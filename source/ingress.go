@@ -19,7 +19,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/blake/external-mdns/resource"
+	"github.com/chrissnell/external-mdns/resource"
 	"github.com/jpillora/go-tld"
 	v1 "k8s.io/api/networking/v1"
 	"k8s.io/apimachinery/pkg/util/runtime"

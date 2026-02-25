@@ -22,9 +22,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/blake/external-mdns/mdns"
-	"github.com/blake/external-mdns/resource"
-	"github.com/blake/external-mdns/source"
+	"github.com/chrissnell/external-mdns/mdns"
+	"github.com/chrissnell/external-mdns/resource"
+	"github.com/chrissnell/external-mdns/source"
 	"k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/client-go/informers"
 )

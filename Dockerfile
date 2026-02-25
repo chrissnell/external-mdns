@@ -1,11 +1,11 @@
-FROM --platform=$BUILDPLATFORM golang:1.16 AS build
+FROM --platform=$BUILDPLATFORM golang:1.26 AS build
 
 ARG TARGETOS
 ARG TARGETARCH
 ARG TARGETVARIANT
 
-ADD . /go/src/github.com/blake/external-mdns
-WORKDIR /go/src/github.com/blake/external-mdns
+ADD . /go/src/github.com/chrissnell/external-mdns
+WORKDIR /go/src/github.com/chrissnell/external-mdns
 
 RUN mkdir -p /release/etc &&\
     echo nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin > /release/etc/passwd &&\
@@ -14,17 +14,13 @@ RUN mkdir -p /release/etc &&\
     -ldflags="-s -w" \
     -o /release/external-mdns .
 
-
 FROM scratch
 
-LABEL maintainer="Blake Covarrubias <blake@covarrubi.as>" \
-      org.opencontainers.image.authors="Blake Covarrubias <blake@covarrubi.as>" \
-      org.opencontainers.image.description="Advertises records for Kubernetes resources over multicast DNS." \
+LABEL org.opencontainers.image.description="Advertises records for Kubernetes resources over multicast DNS." \
       org.opencontainers.image.licenses="Apache-2.0" \
-      org.opencontainers.image.source="https://github.com/blake/external-mdns" \
+      org.opencontainers.image.source="https://github.com/chrissnell/external-mdns" \
       org.opencontainers.image.title="external-mdns" \
-      org.opencontainers.image.url="https://github.com/blake/external-mdns" \
-      org.opencontainers.image.vendor="Blake Covarrubias"
+      org.opencontainers.image.url="https://github.com/chrissnell/external-mdns"
 
 COPY --from=build /release /
 USER nobody
